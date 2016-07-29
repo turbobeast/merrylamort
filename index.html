@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>Merry la Mort</title>
+    <meta property="og:title" content="Merry La Mort"/>
+    <meta property="og:type" content="game"/>
+    <meta property="og:description"
+          content="Try your hand at building a snowman in HTML5 and watch the holidays come alive ...sort of."/>
+
+     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-57x57.png" />
+    <link rel="shortcut icon" href="images/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-startup-image" href="images/startup-splash.jpg" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<style>
+	@font-face {
+		font-family: "Open";
+		src : url (fonts/OpenSans-Bold.ttf);
+	}
+    #wrap {
+        width: 100%;
+        margin: 0 auto;
+    }
+    a {
+	border: none;
+	text-decoration: none;
+    }
+    canvas {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    }
+    #sc_watermark {
+	position: fixed;
+	bottom: 10px;
+	right: 18px;
+    }
+    #gc_watermark {
+	position: fixed;
+	bottom: 7px;
+	left: 18px;
+    }
+    #fallback {
+	width: 800px;
+	margin 0 auto;
+    }
+
+#andrew {
+	position: fixed;
+	bottom: 1px;
+	font-family: arial;
+	font-size: 8pt;
+	color: #47494a;
+}
+
+
+a:visited, a, a:hover {
+	color: #47494a;
+}
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9517861-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+    <div id="wrap">
+	<canvas class="skycanvas" id="sky"></canvas>
+	<canvas class="suncanvas" id="sun"></canvas>
+
+	<canvas class="starcanvas" id="stars"></canvas>
+	<canvas class="mooncanvas" id="moon"></canvas>
+	<canvas class="fhcanvas" id="flyingheads"></canvas>
+
+	<canvas class="bgcanvas" id="bg"></canvas>
+	<canvas class="mountaincanvas" id="mountains"></canvas>
+	<canvas class="treecanvas" id="trees"></canvas>
+	<canvas class="bgmenshadcanvas" id="bgmenshadows"></canvas>
+	<canvas class="bgmencanvas" id="bgmen"></canvas>
+	<canvas class="shadomycanvas" id="shadows"></canvas>
+	<canvas class="canvascanvas" id="canvas"></canvas>
+
+	<canvas id="fg"></canvas>
+	<canvas class="foregroundytreecanvi" id="foregroundtrees"></canvas>
+	<canvas id="lenscanvas"></canvas>
+	<div id="sc_watermark"><a href="http://stonecanoe.ca" target="_blank"><img src="images/stonecanoe.png" alt="stone canoe" /></a></div>
+	<div id="andrew"><p><a href="http://www.andrewoye.com" target="_blank" >Music by Andrew Oye</a></p></div>
+	<div id="gc_watermark"><a href=" http://www.chromeexperiments.com/detail/merry-la-mort/" target="_blank"><img src="images/chrome.png" alt="google chrome" /></a></div>
+    </div>
+<!-- <script src='js/modernizr_devbuild.js'></script> -->
+<script src="js/verletsystem.js"></script>
+<script src="js/multiverse.js"></script>
+<script src="js/fallingbox.js"></script>
+<script src="js/snowball.js"></script>
+<script src="js/arm_points.js"></script>
+<script src="js/constants/game_states.js"></script>
+<script src="js/billiard_collision.js"></script>
+<script src="js/snowman.js"></script>
+<script src="js/snowmen.js"></script>
+</body>
+</html>
