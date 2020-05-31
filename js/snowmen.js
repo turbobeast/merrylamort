@@ -293,8 +293,8 @@ HolidayZombies.startUp = function () {
 	    	multiverse.eventlistener('mousemove', lenscanvas, function (e) {
 	    		var e = e || window.event;
 
-	    		themouseY = e.pageY;
-	    		themouseX = e.pageX;
+	    		themouseY = (e.pageY || e.touches[0].pageX);
+	    		themouseX = (e.pageX || e.touches[0].pageY);
 	    	});
 
 	    	multiverse.eventlistener('mousedown', lenscanvas, function (e) {
@@ -305,8 +305,8 @@ HolidayZombies.startUp = function () {
 		    		for(i = 0; i < items.length; i += 1) {
 		    			item = items[i];
 
-		    			distX = e.pageX - (item.x + (item.width *0.5));
-		    			distY = e.pageY - (item.y + (item.height *0.5));
+		    			distX = (e.pageX || e.touches[0].pageX) - (item.x + (item.width *0.5));
+		    			distY = (e.pageY || e.touches[0].pageY) - (item.y + (item.height *0.5));
 
 		    			dist = Math.sqrt(distX * distX + distY * distY);
 
@@ -2686,8 +2686,8 @@ HolidayZombies.startUp = function () {
 	function mauzDownIntro (e) {
 		var distX, distY, buttonX, buttonY, m = 0;
 		//button distance/collision detection
-		distX = e.pageX - canvas.offsetLeft - (banner.centerX() + banner.width * 0.5);
-		distY = e.pageY - canvas.offsetTop - (banner.offSetY + banner.height * 0.5);
+		distX = (e.pageX || e.touches[0].pageX) - canvas.offsetLeft - (banner.centerX() + banner.width * 0.5);
+		distY = (e.pageY || e.touches[0].pageY) - canvas.offsetTop - (banner.offSetY + banner.height * 0.5);
 		if( Math.abs(distX ) < banner.width * 0.5 && Math.abs( distY ) < banner.height * 0.5 ) {
 			banner.setTarget( banner.offSetX, -600);
 			banner.setAlpha(0);
@@ -2705,8 +2705,8 @@ HolidayZombies.startUp = function () {
 		var j = 0, snowball, distX, distY, dist;
 		for(j = snowballs.length -1; j >= 0; j -= 1) {
 			snowball = snowballs[j];
-	 		distX = e.pageX - canvas.offsetLeft - snowball.x;
-			distY = e.pageY - canvas.offsetTop - snowball.y;
+	 		distX = (e.pageX || e.touches[0].pageX) - canvas.offsetLeft - snowball.x;
+			distY = (e.pageY || e.touches[0].pageY)- canvas.offsetTop - snowball.y;
 			dist = Math.sqrt(distX * distX + distY * distY );
 			if(dist < snowball.radius ) {
 				if(snowball.untouchable === false ) {
@@ -2721,12 +2721,14 @@ HolidayZombies.startUp = function () {
 	}
 
 	function mauzDownGamePlay (e) {
+		console.log(e.targetTouches)
+		console.log(e.touches)
 		var distX, distY, dist, bdistX, bdistY, j = 0, snowball = {}, startingDrag = false;
 
 		for(j = snowballs.length -1; j >= 0; j -= 1) {
 			snowball = snowballs[j];
-	 		distX = e.pageX - canvas.offsetLeft - snowball.x;
-			distY = e.pageY - canvas.offsetTop - snowball.y;
+	 		distX = (e.pageX || e.touches[0].pageX)  - canvas.offsetLeft - snowball.x;
+			distY = (e.pageY || e.touches[0].pageY) - canvas.offsetTop - snowball.y;
 			dist = Math.sqrt(distX * distX + distY * distY );
 			if(dist < snowball.radius ) {
 				if(snowball.corpsehead === true ) {
@@ -2749,8 +2751,8 @@ HolidayZombies.startUp = function () {
 		}
 
 		if( blizzardAttackAvailable ) {
-			distX = e.pageX - canvas.offsetLeft - 33 -(canvaswidth *0.5 - 20);
-			distY = e.pageY - canvas.offsetTop - 29;
+			distX = (e.pageX || e.touches[0].pageX) - canvas.offsetLeft - 33 -(canvaswidth *0.5 - 20);
+			distY = (e.pageY || e.touches[0].pageY) - canvas.offsetTop - 29;
 			dist = Math.sqrt( distX * distX + distY * distY);
 			if( dist < 21 ) {
 				blizzardAttack();
@@ -2761,7 +2763,7 @@ HolidayZombies.startUp = function () {
 		}
 
 		if( startingDrag === false ) {
-			makeSuperBall(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+			makeSuperBall((e.pageX || e.touches[0].pageX) - canvas.offsetLeft, (e.pageY || e.touches[0].pageY) - canvas.offsetTop);
 			superballCharging = true;
 		}
 	}
@@ -2769,8 +2771,8 @@ HolidayZombies.startUp = function () {
 	function mauzMoveIntro (e) {
 		var distX, distY, buttonX, buttonY;
 		//button distance/collision detection
-		distX = e.pageX - canvas.offsetLeft - (banner.centerX() + banner.width * 0.5);
-		distY = e.pageY - canvas.offsetTop - (banner.offSetY + banner.height * 0.5);
+		distX = (e.pageX || e.touches[0].pageX) - canvas.offsetLeft - (banner.centerX() + banner.width * 0.5);
+		distY = (e.pageY || e.touches[0].pageY) - canvas.offsetTop - (banner.offSetY + banner.height * 0.5);
 		if( Math.abs(distX ) < banner.width * 0.5 && Math.abs( distY ) < banner.height * 0.5 ) {
 			lenscanvas.style.cursor = 'pointer';
 		} else {
@@ -2785,8 +2787,8 @@ HolidayZombies.startUp = function () {
 			if(snowball.drag === true) {
 				snowball.oldX = snowball.x;
 				snowball.oldY = snowball.y;
-				snowball.x = e.pageX - canvas.offsetLeft - snowball.mouseOffsetX;
-				snowball.y = e.pageY - canvas.offsetTop - snowball.mouseOffsetY;
+				snowball.x = (e.pageX || e.touches[0].pageX) - canvas.offsetLeft - snowball.mouseOffsetX;
+				snowball.y = (e.pageY || e.touches[0].pageY) - canvas.offsetTop - snowball.mouseOffsetY;
 				snowball.dx = snowball.x - snowball.oldX;
 				snowball.dy = snowball.y - snowball.oldY;
 			}
@@ -2797,24 +2799,24 @@ HolidayZombies.startUp = function () {
 	function mauzMoveGamePlay (e) {
 		var mouseX, mouseY, i= 0, snowball;
 
-		globalMouseX = e.pageX - canvas.offsetLeft;
-		globalMouseY = e.pageY - canvas.offsetTop;
+		globalMouseX = (e.pageX || e.touches[0].pageX) - canvas.offsetLeft;
+		globalMouseY = (e.pageY || e.touches[0].pageY) - canvas.offsetTop;
 
 		for (i = snowballs.length-1 ; i >= 0; i -= 1) {
 			snowball = snowballs[i];
 			if(snowball.drag === true) {
 				snowball.oldX = snowball.x;
 				snowball.oldY = snowball.y;
-				snowball.x = e.pageX - canvas.offsetLeft - snowball.mouseOffsetX;
-				snowball.y = e.pageY - canvas.offsetTop - snowball.mouseOffsetY;
+				snowball.x =(e.pageX || e.touches[0].pageX)- canvas.offsetLeft - snowball.mouseOffsetX;
+				snowball.y = (e.pageY || e.touches[0].pageY)- canvas.offsetTop - snowball.mouseOffsetY;
 				snowball.dx = snowball.x - snowball.oldX;
 				snowball.dy = snowball.y - snowball.oldY;
 			}
 		}
 
 		if( superballCharging === true ) {
-			currentsuperball.endX = e.pageX - canvas.offsetLeft;
-			currentsuperball.endY = e.pageY - canvas.offsetTop;
+			currentsuperball.endX = (e.pageX || e.touches[0].pageX)  - canvas.offsetLeft;
+			currentsuperball.endY = (e.pageY || e.touches[0].pageY) - canvas.offsetTop;
 		}
 
 		if( firstBallFired === false ) {
