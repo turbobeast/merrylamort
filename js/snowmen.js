@@ -1285,7 +1285,7 @@ HolidayZombies.startUp = function () {
 
 	function blizzardAttack () {
 		var b = 0, bal;
-		for( b = 0 ; b < 24 ; b += 1) {
+		for( b = 0 ; b < 2048 ; b += 1) {
 			bal = {};
 			bal.startX = Math.random() * canvaswidth - (canvaswidth * 0.5);
 			bal.startY =  0;
